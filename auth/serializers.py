@@ -11,12 +11,12 @@ class RegisterSerializer(serializers.ModelSerializer):
     )
     
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
-    password2 = serializers.CharField(write_only=True, required=True)
+    password_repeated = serializers.CharField(write_only=True, required=True)
 
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2', 'email', 'first_name', 'last_name')
+        fields = ('username', 'password', 'password_repeated', 'email', 'first_name', 'last_name')
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True}
@@ -41,10 +41,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return user
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+class TokenPairLoginSerializer(TokenObtainPairSerializer):
 
     @classmethod
     def get_token(cls, user):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+        token = super(TokenPairLoginSerializer, cls).get_token(user)
         token['username'] = user.username
         return token
