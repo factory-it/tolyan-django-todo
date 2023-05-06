@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
-from .serializers import LoginTokenPairSerializer, RegisterSerializer
+from .serializers import TokenPairLoginSerializer, RegisterSerializer
 from rest_framework import generics
 
 # Create your views here.
@@ -10,7 +10,7 @@ from rest_framework import generics
 
 class TokenPairLoginView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
-    serializer_class = LoginTokenPairSerializer
+    serializer_class = TokenPairLoginSerializer
 
 
 class RegisterView(generics.CreateAPIView):
