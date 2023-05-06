@@ -23,7 +23,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, attrs):
-        if attrs['password'] != attrs['password2']:
+        if attrs['password'] != attrs['password_repeated']:
             raise serializers.ValidationError({"password": "Password fields didn`t match."})
        
         return attrs
