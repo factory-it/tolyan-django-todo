@@ -21,6 +21,8 @@ from drf_yasg import openapi
 from django.conf import settings
 from django.conf.urls.static import static
 
+from todos import views
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -42,7 +44,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('auth.urls')),
     path('profile', include('userprofile.urls')),
-    path('todos', include('todos.urls')),
+    path('todos', views.TodosListView.as_view(), name="todos_list"),
+    path('todos/<int:pk>', views.SingleTodoView.as_view(), name="single_todo"),
 ]
 
 if settings.DEBUG:
