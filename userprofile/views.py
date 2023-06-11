@@ -8,7 +8,7 @@ from .serializers import UserProfileSerializer
 
 # Create your views here.
 
-class UserProfileView(generics.RetrieveUpdateAPIView):
+class UserProfileView(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = (IsAuthenticated,)
