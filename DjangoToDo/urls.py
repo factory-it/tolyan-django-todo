@@ -42,11 +42,7 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
     path('admin/', admin.site.urls),
-    path('auth/', include('auth.urls')),
-    path('profile', include('userprofile.urls')),
-    path('todos', views.TodosListView.as_view(), name="todos_list"),
-    path('todos/<int:pk>', views.SingleTodoView.as_view(), name="single_todo"),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('auth/', include('auth.urls'), name='authentication'),
+    path('profile/', include('userprofile.urls'), name='user-profile'),
+    path('todos/', include('todos.urls'), name='todos-list'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -19,7 +19,7 @@ class SingleTodoView(generics.RetrieveUpdateAPIView):
     queryset = Todos.objects.all()
     serializer_class = TodosSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-
+    
     def delete(self, request, pk):
         drinks = Todos.objects.filter(id=pk)
         drinks.delete()
